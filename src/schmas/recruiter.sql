@@ -24,6 +24,8 @@ CREATE TABLE `talent_heaven_recruiters`.`auth` (
   `company_id` VARCHAR(30) NOT NULL,
   `company_name` VARCHAR(100) NOT NULL,
   `company_about` LONGTEXT NULL,
+  `company_industry` VARCHAR(100),
+  `company_category` VARCHAR(100),
   `company_location` MEDIUMTEXT NULL,
   `company_country` VARCHAR(100) NULL,
   `company_state` VARCHAR(100) NULL,

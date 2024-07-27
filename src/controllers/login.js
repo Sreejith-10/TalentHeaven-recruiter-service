@@ -52,11 +52,12 @@ export const login = async (req, res) => {
 			);
 
 			await sql(
-				`INSERT INTO auth (session_id,refresh_token,recruiter_id) VALUES ('${session_id}','${refresh_token}','$${userExist.recruiter_id}')`
+				`INSERT INTO auth (session_id,refresh_token,recruiter_id) VALUES ('${session_id}','${refresh_token}','${userExist.recruiter_id}')`
 			);
 
 			return res
 				.cookie("access_token", access_token, {maxAge: 1000 * 60 * 60 * 10})
+				.cookie("session_id", session_id, {maxAge: 1000 * 60 * 60 * 24 * 5})
 				.status(200)
 				.json({
 					message: "login success",
