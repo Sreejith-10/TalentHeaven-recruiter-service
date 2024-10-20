@@ -33,7 +33,7 @@ export const refresh = async (req, res) => {
 			);
 
 			return res
-				.cookie("access_token", access_token, {maxAge: 1000 * 30})
+				.cookie("hr_access_token", access_token, {maxAge: 1000 * 60 * 60 * 10})
 				.status(200)
 				.json({
 					message: "login success",

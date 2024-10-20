@@ -56,8 +56,8 @@ export const login = async (req, res) => {
 			);
 
 			return res
-				.cookie("access_token", access_token, {maxAge: 1000 * 60 * 60 * 10})
-				.cookie("session_id", session_id, {maxAge: 1000 * 60 * 60 * 24 * 5})
+				.cookie("hr_access_token", access_token, {maxAge: 1000 * 60 * 60 * 10})
+				.cookie("hr_session_id", session_id, {maxAge: 1000 * 60 * 60 * 24 * 5})
 				.status(200)
 				.json({
 					message: "login success",
