@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  recruiter-service-db:
+    image: mysql:8.0
+    container_name: recruiter-service-db
+    ports:
+      - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: rootadmin
+        MYSQL_DATABASE: alent_heaven_recruiters
+        MYSQL_USER: root
+        MYSQL_PASSWORD: rootadmin
+    volumes:
+      - recruiter-service-db-data:/var/lib/mysql
+    networks:
+        - shared-network
+
+  recruiter-service:
+    build:
+      context: .
+    container_name: recruiter-service
+    ports:
+      - "3002:3002"
+    environment:
+      AMQP_URL: amqp://user:password@rabbitmq:5672
+      MYSQL_URL: mysql://user:password@recruiter-service-db:3306/talent_heaven_recruiters
+    depends_on:
+      - recruiter-service-db
+    networks:
+        - rabbitmq-network
+
+networks:
+  shared-network:
+    external: true
+
+volumes:
+  recruiter-service-db-data: 
